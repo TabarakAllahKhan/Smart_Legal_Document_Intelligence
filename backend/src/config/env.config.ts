@@ -16,6 +16,7 @@ requiredEnvVars.forEach((key)=>{
     }
 });
 
+// The ! is the null asertion operator, which tells TypeScript that we are sure that the value is not null or undefined.
 export const env={
     databaseUrl:process.env.DATABASE_URL!,
     jwtAccessSecret:process.env.JWT_ACCESS_SECRET!,
