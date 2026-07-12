@@ -1,5 +1,6 @@
 import express from "express";
 import {Request,Response} from "express";
+import authRoutes from "./auth/auth.routes";
 
 import cors from "cors";
 
@@ -21,5 +22,6 @@ app.get("/health",(req:Request,res:Response)=>{
         "message":"Server is running"
        })
 })
+app.use('/api/auth',authRoutes);
 
 export default app;
