@@ -9,8 +9,14 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./backend/src/types"
+    ]
   },
-  "include": ["backend/src/**/*"],
+  "include": [
+    "backend/src/**/*"
+  ],
   "exclude": ["node_modules", "backend/dist"]
 }

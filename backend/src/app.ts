@@ -4,6 +4,8 @@ import authRoutes from "./auth/auth.routes";
 
 import cors from "cors";
 
+
+
 const app=express();
 
 //middlewares
@@ -22,6 +24,7 @@ app.get("/health",(req:Request,res:Response)=>{
         "message":"Server is running"
        })
 })
+
 app.use('/api/auth',authRoutes);
 
 export default app;
