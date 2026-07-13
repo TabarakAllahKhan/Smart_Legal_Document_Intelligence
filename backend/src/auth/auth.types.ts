@@ -3,7 +3,10 @@ interface RegisterRequest{
     email:string
     password:string
 }
-
+interface LoginRequest{
+    email:string
+    password:string
+}
 interface AuthUserResponse{
     id:string
     name:string
@@ -16,8 +19,10 @@ interface AuthResponse{
     user:AuthUserResponse
 }
 
+
 export {
     RegisterRequest,
     AuthResponse,
-    AuthUserResponse
+    AuthUserResponse,
+    LoginRequest
 }
