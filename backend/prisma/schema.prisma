@@ -34,7 +34,7 @@ model Document{
   userId String
   user User @relation(fields:[userId],references:[id])
   filename String
-  orignalName String
+  originalName String 
   summary String?
   parties String[]
   keyDates String[]
