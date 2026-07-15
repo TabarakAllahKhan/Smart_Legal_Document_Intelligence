@@ -19,13 +19,14 @@ export const storeChunksWithEmbeddings = async (
       }
     })
 
-    // store embedding as vector using raw sql
+    // store embedding using $queryRaw instead of $executeRaw
+    // this handles the vector cast correctly
     const embeddingString = `[${embedding.join(',')}]`
-    await prisma.$executeRaw`
-      UPDATE "Chunk"
-      SET embedding = ${embeddingString}::vector
-      WHERE id = ${createdChunk.id}
-    `
+    await prisma.$queryRawUnsafe(
+      `UPDATE "Chunk" SET embedding = $1::vector WHERE id = $2`,
+      embeddingString,
+      createdChunk.id
+    )
   }
 }
 

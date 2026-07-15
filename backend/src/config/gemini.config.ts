@@ -5,11 +5,11 @@ import {env} from './env.config';
 const genAi=new GoogleGenerativeAI(env.geminiApiKey);
 
 export const gemniModel=genAi.getGenerativeModel({
-    model:'gemini-1.5-flash'
+    model:'gemma-4-26b-a4b-it'
 })
 
 export const embeddingModel=genAi.getGenerativeModel({
-    model:'text-embedding-004'
+    model:'gemini-embedding-001'
 })
 
 export default genAi;

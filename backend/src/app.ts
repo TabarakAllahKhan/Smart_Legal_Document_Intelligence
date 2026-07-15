@@ -1,7 +1,7 @@
 import express from "express";
 import {Request,Response} from "express";
 import authRoutes from "./auth/auth.routes";
-
+import documentRoutes from "./document/document.routes";
 import cors from "cors";
 
 
@@ -26,5 +26,6 @@ app.get("/health",(req:Request,res:Response)=>{
 })
 
 app.use('/api/auth',authRoutes);
+app.use('/api/documents',documentRoutes);
 
 export default app;

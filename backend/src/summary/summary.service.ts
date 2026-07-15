@@ -15,19 +15,29 @@ export const generateDocumentSummary = async (
       "riskFlags": ["list of any risky or unusual clauses that need attention"]
     }
     
-    Return ONLY the JSON object, no markdown, no explanation, nothing else.
+    Return ONLY the JSON object. No markdown, no backticks, no explanation, nothing else. Just the raw JSON.
     
     Document:
-    ${rawText.slice(0, 8000)}
+    ${rawText.slice(0, 3000)}
   `
 
-  const result = await gemniModel.generateContent(prompt)
-  const responseText = result.response.text()
-
   try {
-    const parsed: DocumentSummary = JSON.parse(responseText)
+    const result = await gemniModel.generateContent(prompt)
+    const responseText = result.response.text()
+
+    console.log('Gemini raw response:', responseText)
+
+    // strip markdown code blocks if present
+    const cleanedResponse = responseText
+      .replace(/```json\n?/g, '')
+      .replace(/```\n?/g, '')
+      .trim()
+
+    const parsed: DocumentSummary = JSON.parse(cleanedResponse)
     return parsed
-  } catch {
+
+  } catch (error) {
+    console.error('Summary generation failed:', error)
     return {
       summary: 'Summary could not be generated',
       parties: [],
