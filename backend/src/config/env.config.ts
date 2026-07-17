@@ -7,7 +7,8 @@ const requiredEnvVars=[
     'JWT_ACCESS_SECRET',
     'JWT_REFRESH_SECRET',
     'GEMINI_API_KEY',
-    'PORT'
+    'PORT',
+    'GROQ_API_KEY'
 ] as const;
 
 requiredEnvVars.forEach((key)=>{
@@ -22,5 +23,6 @@ export const env={
     jwtAccessSecret:process.env.JWT_ACCESS_SECRET!,
     jwtRefreshSecret:process.env.JWT_REFRESH_SECRET!,
     geminiApiKey:process.env.GEMINI_API_KEY!,
+    GROQ_API_KEY:process.env.GROQ_API_KEY!,
     port:parseInt(process.env.PORT!) || 5000
 }

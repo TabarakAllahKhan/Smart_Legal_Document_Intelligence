@@ -1,15 +1,17 @@
 import {GoogleGenerativeAI} from '@google/generative-ai';
-
+import Groq from 'groq-sdk';
 import {env} from './env.config';
 
-const genAi=new GoogleGenerativeAI(env.geminiApiKey);
+const genAI=new GoogleGenerativeAI(env.geminiApiKey);
 
-export const gemniModel=genAi.getGenerativeModel({
-    model:'gemma-4-26b-a4b-it'
+export const groqClient=new Groq({
+    apiKey:env.GROQ_API_KEY
 })
 
-export const embeddingModel=genAi.getGenerativeModel({
+export const embeddingModel=genAI.getGenerativeModel({
     model:'gemini-embedding-001'
 })
 
-export default genAi;
+
+export {genAI}
+export default genAI;

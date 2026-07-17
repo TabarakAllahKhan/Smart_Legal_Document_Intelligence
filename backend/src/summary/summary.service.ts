@@ -1,4 +1,4 @@
-import { gemniModel } from '../config/gemini.config'
+import { groqClient } from '../config/gemini.config'
 import { DocumentSummary } from './summary.types'
 
 export const generateDocumentSummary = async (
@@ -22,12 +22,22 @@ export const generateDocumentSummary = async (
   `
 
   try {
-    const result = await gemniModel.generateContent(prompt)
-    const responseText = result.response.text()
+    console.log('Calling Groq for summary...')
+    
+    const completion = await groqClient.chat.completions.create({
+      model: 'llama-3.1-8b-instant',
+      messages: [
+        {
+          role: 'user',
+          content: prompt
+        }
+      ],
+      temperature: 0.1
+    })
 
-    console.log('Gemini raw response:', responseText)
+    const responseText = completion.choices[0]?.message?.content || ''
+    console.log('Groq raw response:', responseText)
 
-    // strip markdown code blocks if present
     const cleanedResponse = responseText
       .replace(/```json\n?/g, '')
       .replace(/```\n?/g, '')

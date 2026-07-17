@@ -1,7 +1,7 @@
 import prisma from "../config/prisma.config";
 import { loadPDF } from "./pipeline/loader";
 import { splitText } from "./pipeline/splitter";
-import { generateEmbedding } from "./pipeline/embedder";
+import { generateEmbeddings } from "./pipeline/embedder";
 import { storeChunksWithEmbeddings } from "./pipeline/vectorstore";
 import { DocumentUploadResponse } from "./document.types";
 import { generateDocumentSummary } from "../summary/summary.service";
@@ -15,27 +15,33 @@ export const uploadDocument = async (
     data: {
       userId,
       filename: file.fieldname,
-      originalName: file.originalname  // fixed typo here
+      originalName: file.originalname
     }
   })
 
   // load pdf text
   const rawText = await loadPDF(file.buffer)
 
+
   // split into chunks
   const chunks = await splitText(rawText)
+  console.log('Total chunks',chunks.length)
+  console.log("STARRING BATCH EMBEDDING")
 
-  // generate embeddings
-  const embeddings = await Promise.all(
-    chunks.map((c) => generateEmbedding(c.content))
+
+  // generate all embeddings in ONE batch call instead of one per chunk
+  const embeddings = await generateEmbeddings(
+    chunks.map((c) => c.content)
   )
+  console.log("EMBEDDING IS DONE.TOTAL:",embeddings.length)
+  console.log("Starting summary generation...")
 
   // store chunks with embeddings
   await storeChunksWithEmbeddings(document.id, chunks, embeddings)
 
   // generate auto summary
   const summaryResult = await generateDocumentSummary(rawText, document.id)
-
+console.log("Summary done")
   // update document with summary fields
   const updatedDocument = await prisma.document.update({
     where: { id: document.id },
@@ -48,7 +54,6 @@ export const uploadDocument = async (
     }
   })
 
-  // return the response
   return {
     document: updatedDocument,
     summary: summaryResult.summary,
