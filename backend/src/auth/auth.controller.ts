@@ -1,8 +1,9 @@
 import {Request,Response} from 'express';
 import {catchAsync} from '../utils/async.utils';
 import {sendSuccess,sendError} from '../utils/response.utils';
-import {registerUser,loginUser} from './auth.service';
+import {registerUser,loginUser,refreshAccessToken,LogoutUser} from './auth.service';
 import {RegisterRequest,LoginRequest} from './auth.types';
+import { AuthRequest } from '../middlewares/auth.middleware';
 
 
 export const register=catchAsync(async(req:Request,res:Response):Promise<void>=>{
@@ -33,3 +34,25 @@ export const LoginUser=catchAsync(async(req:Request,res:Response):Promise<void>=
 
 
 })
+
+export const refresh=catchAsync(
+    async(req:Request,res:Response)=>{
+        const {refreshToken}=req.body;
+
+        if(!refreshToken){
+            sendError(res,"Refresh Token required",400);
+            return
+        }
+        const result=await refreshAccessToken(refreshToken);
+
+        sendSuccess(res,result,"Access token refreshed successfully");
+    }
+)
+
+export const logout=catchAsync(
+    async(req:AuthRequest,res:Response)=>{
+        const userId=req.user!.id as string
+        await LogoutUser(userId)
+        sendSuccess(res,null,'Logged out successfully')
+    }
+)
