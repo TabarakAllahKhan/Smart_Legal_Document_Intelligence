@@ -2,7 +2,10 @@ import express from "express";
 import {Request,Response} from "express";
 import authRoutes from "./auth/auth.routes";
 import documentRoutes from "./document/document.routes";
+import chatRoutes from "./chat/chat.routes";
+import conversationRoutes from "./conversation/conversation.routes"
 import { errorMiddleware } from "./middlewares/error.middleware";
+
 import cors from "cors";
 
 
@@ -28,5 +31,7 @@ app.get("/health",(req:Request,res:Response)=>{
 
 app.use('/api/auth',authRoutes);
 app.use('/api/documents',documentRoutes);
+app.use('/api/chat',chatRoutes);
+app.use('/api/conversations',conversationRoutes)
 app.use(errorMiddleware)
 export default app;
