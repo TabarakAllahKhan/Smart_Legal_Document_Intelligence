@@ -22,12 +22,10 @@ export const processChat=async(
     }
 
     // Embededding the user Question
-    console.log("Embedding user Question")
     const questionEmbedding=await generateEmbedding(question);
 
     // find similar chunks from pgvector
     const similarChunks=await searchSimilarChunks(questionEmbedding,documentId,5);
-    console.log("Similar chunk found",similarChunks.length);
 
     // build context from chunk
 
