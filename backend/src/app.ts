@@ -5,7 +5,7 @@ import documentRoutes from "./document/document.routes";
 import chatRoutes from "./chat/chat.routes";
 import conversationRoutes from "./conversation/conversation.routes"
 import { errorMiddleware } from "./middlewares/error.middleware";
-
+import cookieParser from "cookie-parser";
 import cors from "cors";
 
 
@@ -14,8 +14,13 @@ const app=express();
 
 //middlewares
 
-app.use(cors());
-
+app.use(cors(
+       {
+              origin:'http://localhost:5173', // REACT URL
+              credentials:true // required for cookies
+       }
+));
+app.use(cookieParser())
 app.use(express.json());
 
 app.use(express.urlencoded({extended:true}));

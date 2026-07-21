@@ -6,6 +6,13 @@ import {RegisterRequest,LoginRequest} from './auth.types';
 import { AuthRequest } from '../middlewares/auth.middleware';
 
 
+const COOKIE_OPTIONS={
+    httpOnly:true,
+    secure:process.env.Node_ENV==='production',
+    sameSite:'strict' as const,
+    maxAge:7*24*60*60*1000 // 7 days
+}
+
 export const register=catchAsync(async(req:Request,res:Response):Promise<void>=>{
     const body:RegisterRequest=req.body;
     if(!body.name || !body.email || !body.password){
@@ -17,7 +24,14 @@ export const register=catchAsync(async(req:Request,res:Response):Promise<void>=>
         return;
     }
     const result=await registerUser(body);
-    sendSuccess(res,result,'User registered successfully',201);
+    // Setting refresh Token as httpOnly Cookie
+    res.cookie('refreshToken',result.refreshToken,COOKIE_OPTIONS);
+    sendSuccess(res,
+        {
+            accessToken:result.accessToken,
+            user:result.user
+        },"User registered Successfully",201
+    );
 }
 )
 
@@ -29,7 +43,8 @@ export const LoginUser=catchAsync(async(req:Request,res:Response):Promise<void>=
         return;
     }
     const result=await loginUser(body);
-    sendSuccess(res,result,'User Logged in successfully',200);
+    res.cookie("refreshToken",result.refreshToken,COOKIE_OPTIONS)
+    sendSuccess(res,{accessToken:result.accessToken,user:result.user},'User Logged in successfully',200);
 
 
 
@@ -37,7 +52,7 @@ export const LoginUser=catchAsync(async(req:Request,res:Response):Promise<void>=
 
 export const refresh=catchAsync(
     async(req:Request,res:Response)=>{
-        const {refreshToken}=req.body;
+        const {refreshToken}=req.cookies.refreshToken;
 
         if(!refreshToken){
             sendError(res,"Refresh Token required",400);
@@ -53,6 +68,9 @@ export const logout=catchAsync(
     async(req:AuthRequest,res:Response)=>{
         const userId=req.user!.id as string
         await LogoutUser(userId)
+
+        //clear the cookie
+        res.clearCookie('refreshToken',COOKIE_OPTIONS)
         sendSuccess(res,null,'Logged out successfully')
     }
 )
