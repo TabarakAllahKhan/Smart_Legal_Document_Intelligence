@@ -11,7 +11,7 @@ export const uploadDocumentApi=async(file:File)=>{
 }
 
 export const getDocumentApi=async()=>{
-    const res=await api.get('documents');
+    const res=await api.get('/documents');
     return res.data.data;
 }
 
