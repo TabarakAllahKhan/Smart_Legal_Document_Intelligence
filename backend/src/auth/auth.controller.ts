@@ -52,7 +52,7 @@ export const LoginUser=catchAsync(async(req:Request,res:Response):Promise<void>=
 
 export const refresh=catchAsync(
     async(req:Request,res:Response)=>{
-        const {refreshToken}=req.cookies.refreshToken;
+        const refreshToken=req.cookies.refreshToken;
 
         if(!refreshToken){
             sendError(res,"Refresh Token required",400);

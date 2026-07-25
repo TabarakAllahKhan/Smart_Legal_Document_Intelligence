@@ -10,11 +10,15 @@ export const uploadDocumentApi=async(file:File)=>{
     return res.data.data
 }
 
-export const getDocumentApi=async()=>{
+export const getDocumentsApi=async()=>{
     const res=await api.get('/documents');
     return res.data.data;
 }
 
+export const getDocumentById=async(id:string)=>{
+     const res=await api.get(`/documents/${id}`)
+     return res.data.data
+}
 export const deleteDocumentApi=async(id:string)=>{
     await api.delete(`/documents/${id}`)
 }

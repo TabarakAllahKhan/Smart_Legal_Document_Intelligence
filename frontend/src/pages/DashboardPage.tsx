@@ -5,7 +5,7 @@ import DocumentGrid from '../components/dashboard/DocumentGrid'
 import UploadZone from '../components/dashboard/UploadZone'
 import Spinner from '../components/ui/Spinner'
 import Button from '../components/ui/Button'
-import { getDocumentApi } from '../api/document.api'
+import { getDocumentsApi,deleteDocumentApi } from '../api/document.api'
 import { useAuth } from '../context/AuthContext'
 
 interface Document {
@@ -27,7 +27,7 @@ export default function DashboardPage() {
 
   const fetchDocuments = async () => {
     try {
-      const data = await getDocumentApi()
+      const data = await getDocumentsApi()
       setDocuments(data)
     } catch {
       console.error('Failed to fetch documents')

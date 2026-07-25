@@ -12,12 +12,19 @@ export const sendMessageApi=async(
     return res.data.data
 }
 
-export const getConversationsApi=async()=>{
-    const res=await api.get('/conversations')
+export const getConversationsApi=async(documentId?:string)=>{
+    const url=documentId
+    ? `/conversations?documentId=${documentId}`
+    : `/conversations`
+    const res=await api.get(url)
     return res.data.data
 }
 
 export const getConversationApi=async(id:string)=>{
     const res=await api.get(`/conversations/${id}`)
     return res.data.data
+}
+
+export const deleteConversationApi=async(id:string)=>{
+    await api.delete(`/conversations/${id}`)
 }

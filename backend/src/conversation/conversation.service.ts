@@ -41,13 +41,26 @@ export const getConverstaionWithMessages=async(
     })
 }
 
-export const getUserConversations=async(userId:string)=>{
-    return prisma.conversation.findMany({
-        where:{userId},
-        include:{
-            messages:{take:1,orderBy:{createdAt:'asc'}},
-            document:{select:{originalName:true}}
-        },
-        orderBy:{updatedAt:'desc'}
+export const getUserConversations = async (
+  userId: string,
+  documentId?: string
+) => {
+  return prisma.conversation.findMany({
+    where: {
+      userId,
+      // filter by documentId if provided
+      ...(documentId && { documentId })
+    },
+    include: {
+      messages: { take: 1, orderBy: { createdAt: 'asc' } },
+      document: { select: { originalName: true } }
+    },
+    orderBy: { updatedAt: 'desc' }
+  })
+}
+
+export const deleteConversationById = async(conversationId:string,userId:string):Promise<void>=>{
+    await prisma.conversation.deleteMany({
+        where:{id:conversationId,userId:userId}
     })
 }
