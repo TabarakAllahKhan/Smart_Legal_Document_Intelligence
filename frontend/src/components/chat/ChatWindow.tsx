@@ -18,9 +18,17 @@ interface Message {
 interface ChatWindowProps {
   messages: Message[]
   loading: boolean
+  onSuggestedQuestion: (question: string) => void
 }
 
-export default function ChatWindow({ messages, loading }: ChatWindowProps) {
+const suggestions = [
+  'What are the risk flags and how do I handle them?',
+  'Summarize this contract',
+  'What are the payment terms?',
+  'What is the termination clause?'
+]
+
+export default function ChatWindow({ messages, loading, onSuggestedQuestion }: ChatWindowProps) {
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -38,9 +46,22 @@ export default function ChatWindow({ messages, loading }: ChatWindowProps) {
           <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
             Ask anything about this document
           </p>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-            Try "What are the payment terms?" or "What are the risk flags?"
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 mb-6">
+            Get instant answers with source citations
           </p>
+
+          {/* quick suggestion buttons */}
+          <div className="flex flex-wrap gap-2 justify-center max-w-lg">
+            {suggestions.map((suggestion) => (
+              <button
+                key={suggestion}
+                onClick={() => onSuggestedQuestion(suggestion)}
+                className="text-xs px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-blue-500 hover:text-blue-600 dark:hover:border-blue-500 dark:hover:text-blue-400 bg-white dark:bg-zinc-900 transition-all duration-200 cursor-pointer"
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

@@ -159,7 +159,11 @@ export default function ChatPage() {
           )}
 
           {/* messages */}
-          <ChatWindow messages={messages} loading={loading} />
+          <ChatWindow
+             messages={messages}
+             loading={loading}
+             onSuggestedQuestion={handleSend}
+              />
 
           {/* input */}
           <ChatInput
