@@ -251,3 +251,51 @@ POST /api/auth/login — sign in
 POST /api/auth/refresh — refresh access token
 POST /api/auth/logout — invalidate tokens
 ```
+
+### Documents
+
+```
+POST /api/documents/upload — upload and analyze PDF
+GET /api/documents — get all user documents
+GET /api/documents/:id — get single document
+DELETE /api/documents/:id — delete document + chunks + conversations
+```
+
+### Chat
+```
+POST /api/chat/document/:documentId — new conversation
+POST /api/chat/document/:documentId/:conversationId — continue conversation
+
+```
+
+### Conversations
+```
+GET /api/conversations — get all conversations
+GET /api/conversations/:id — get conversation with messages
+DELETE /api/conversations/:id — delete conversation
+```
+
+---
+
+## Known Limitations
+
+- Scanned/image PDFs require OCR preprocessing — text-based PDFs only
+- Gemini embedding-001 free tier has daily limits — batch calls minimize usage
+- Groq free tier has rate limits — suitable for development and portfolio demonstration
+- Urdu PDF support depends on text encoding quality of the source document
+
+---
+
+## What I learned building this
+
+- RAG pipeline architecture from ingestion to retrieval
+- pgvector cosine similarity search with raw SQL in Prisma
+- Batch embedding to minimize API quota usage
+- JWT security patterns — httpOnly cookies vs localStorage tradeoffs
+- LangChain.js text splitting strategies
+- TypeScript patterns — interface extension, generic API responses, catchAsync wrappers
+- Production-grade error handling with global Express middleware
+
+---
+
+Built by Tabarak | [LinkedIn](www.linkedin.com/in/tabarakallahkhan) | [GitHub](https://github.com/TabarakAllahKhan)
