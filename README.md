@@ -46,7 +46,7 @@ Upload any legal document (PDF) and the platform automatically:
 
 ---
 ## ER Diagram
-![DataBase ERD](assets/Document_Intelligence.drawio.png)
+![DataBase ERD](assets/Document_Intelligence.jpg)
 
 ## Architecture
 ```
