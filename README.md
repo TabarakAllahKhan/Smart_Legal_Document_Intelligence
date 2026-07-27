@@ -48,6 +48,14 @@ Upload any legal document (PDF) and the platform automatically:
 ## ER Diagram
 ![DataBase ERD](assets/Document_Intelligence.jpg)
 
+
+```
+User     ──< Document     (one user has many documents)
+User     ──< Conversation (one user has many conversations)
+Document ──< Chunk        (one document has many chunks)
+Document ──< Conversation (one document has many conversations)
+Conversation ──< Message  (one conversation has many messages)
+```
 ## Architecture
 ```
 User uploads PDF
