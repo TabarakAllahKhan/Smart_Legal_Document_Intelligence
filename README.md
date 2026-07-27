@@ -57,34 +57,7 @@ Document ──< Conversation (one document has many conversations)
 Conversation ──< Message  (one conversation has many messages)
 ```
 ## Architecture
-```
-User uploads PDF
-↓  
-Express receives file via Multer
-↓   
-pdfjs-dist extracts text (supports English, Spanish, Urdu)
-↓
-LangChain RecursiveCharacterTextSplitter chunks text
-(chunkSize: 2000, overlap: 100)
-↓
-Gemini embedding-001 converts chunks to 3072-dim vectors
-(single batch API call)
-↓
-pgvector stores vectors in PostgreSQL Chunk table
-↓
-Groq/Llama generates document summary with risk flags
-↓
-User asks question in chat
-↓
-Question embedded → pgvector cosine similarity search
-↓
-Top 5 relevant chunks retrieved
-↓
-Groq generates answer with risk mitigation suggestions
-↓
-Answer + source citations returned to user
-```
-
+![Architectural Flow](assets/Architectural_Flow.png)
 ---
 
 ## Key Architectural Decisions
