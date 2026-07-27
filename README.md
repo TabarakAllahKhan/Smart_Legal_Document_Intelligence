@@ -45,6 +45,8 @@ Upload any legal document (PDF) and the platform automatically:
 | Context API | Global auth and theme state |
 
 ---
+## ER Diagram
+![DataBase ERD](assets/Document_Intelligence.drawio.png)
 
 ## Architecture
 ```
@@ -290,10 +292,9 @@ DELETE /api/conversations/:id — delete conversation
 
 - RAG pipeline architecture from ingestion to retrieval
 - pgvector cosine similarity search with raw SQL in Prisma
-- Batch embedding to minimize API quota usage
-- JWT security patterns — httpOnly cookies vs localStorage tradeoffs
+- JWT security patterns  httpOnly cookies vs localStorage tradeoffs
 - LangChain.js text splitting strategies
-- TypeScript patterns — interface extension, generic API responses, catchAsync wrappers
+- TypeScript patterns  interface extension, generic API responses, catchAsync wrappers
 - Production-grade error handling with global Express middleware
 
 ---
