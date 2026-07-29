@@ -9,7 +9,7 @@
     "groups": [
       {
         "group": "Getting Started",
-        "pages": ["readme"]
+        "pages": ["info"]
       }
     ]
   }
