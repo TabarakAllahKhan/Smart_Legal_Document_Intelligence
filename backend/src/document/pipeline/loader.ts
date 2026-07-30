@@ -1,18 +1,4 @@
-// import pdfParse from 'pdf-parse'
 
-// export const loadPDF = async (buffer: Buffer): Promise<string> => {
-//   const data = await pdfParse(buffer)
-  
-//   // clean up spacing issues from pdf parsing
-//   const cleanedText = data.text
-//     .replace(/([a-z])([A-Z])/g, '$1 $2')  // add space between camelCase
-//     .replace(/\n{3,}/g, '\n\n')             // remove excessive newlines
-//     .trim()
-  
-//   return cleanedText
-// }
-
-// use legacy build for Node.js — standard build requires browser APIs
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs'
 
 export const loadPDF = async (buffer: Buffer): Promise<string> => {
