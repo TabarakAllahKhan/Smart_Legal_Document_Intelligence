@@ -8,7 +8,6 @@ export const loadPDF = async (buffer: Buffer): Promise<string> => {
     const loadingTask = pdfjsLib.getDocument({
       data: uint8Array,
       useWorkerFetch: false,
-      //isEvalSupported: false,
       useSystemFonts: true,
       disableFontFace: true
     })
