@@ -28,7 +28,6 @@ export const loadPDF = async (buffer: Buffer): Promise<string> => {
     })
 
     const pdf = await loadingTask.promise
-    console.log(`PDF loaded — ${pdf.numPages} pages`)
 
     let fullText = ''
 
