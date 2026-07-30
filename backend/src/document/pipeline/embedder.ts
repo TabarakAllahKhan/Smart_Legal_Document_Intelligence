@@ -20,6 +20,7 @@ export const generateEmbeddings = async (
   return result.embeddings.map((e) => e.values)
 }
 
+// This function is used to convert the User Question which contain single chunk into embedding
 export const generateEmbedding = async (text: string): Promise<number[]> => {
   const embeddings = await generateEmbeddings([text])
   return embeddings[0]
