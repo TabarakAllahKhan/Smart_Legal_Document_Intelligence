@@ -36,10 +36,6 @@ export default function ChatSidebar({
   const fetchConversations = async () => {
     try {
       const data = await getConversationsApi(documentId)
-      // filter only conversations for this document
-      const filtered = data.filter((c: Conversation & { documentId?: string }) =>
-        c.document?.originalName !== undefined
-      )
       setConversations(data)
     } catch {
       console.error('Failed to fetch conversations')
@@ -74,10 +70,10 @@ export default function ChatSidebar({
   }
 
   return (
-    <div className="w-64 shrink-0 h-full bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col transition-colors duration-300">
+    <div className="w-64 h-full bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col transition-colors duration-300">
 
       {/* header */}
-      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800">
+      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 shrink-0">
         <button
           onClick={onBack}
           className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-3"

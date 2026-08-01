@@ -97,7 +97,7 @@ export default function LandingPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 transition-colors duration-300 overflow-x-hidden">
       <Navbar />
 
       {/* hero */}

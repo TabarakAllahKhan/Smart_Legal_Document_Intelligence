@@ -3,6 +3,20 @@ import { verifyAccessToken } from '../utils/jwt.utils'
 import { sendError } from '../utils/response.utils'
 import prisma from '../config/prisma.config'
 
+/*
+WE ARE EXTENDING REQUEST BECAUSE IN EXPRESS REQUEST LOOK LIKE THAT
+
+interface Request {
+    body
+    headers
+    params
+    query
+}
+
+BUT IT DONT HAVE the User so we are extending it to add here and can be imported by controllers
+to extract userid and email
+
+*/
 export interface AuthRequest extends Request {
   user?: {
     id: string
