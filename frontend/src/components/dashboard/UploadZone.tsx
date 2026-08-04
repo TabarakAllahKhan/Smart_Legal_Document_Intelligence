@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import {  useState } from 'react'
 import { Upload, FileText, X, CheckCircle } from 'lucide-react'
 import { uploadDocumentApi } from '../../api/document.api'
 import Button from '../ui/Button'
@@ -14,7 +14,7 @@ export default function UploadZone({ onUploadSuccess }: UploadZoneProps) {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
+  const handleDrop =(e: React.DragEvent) => {
     e.preventDefault()
     setIsDragging(false)
     const file = e.dataTransfer.files[0]
@@ -24,7 +24,7 @@ export default function UploadZone({ onUploadSuccess }: UploadZoneProps) {
     } else {
       setError('Only PDF files are supported')
     }
-  }, [])
+  }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

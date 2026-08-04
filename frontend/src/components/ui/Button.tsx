@@ -1,6 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react'
 import { Loader2 } from 'lucide-react'
 
+// 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg'
@@ -14,7 +15,7 @@ export default function Button({
   children,
   disabled,
   className = '',
-  ...props
+  ...props       // Here ..props contains other button attributes like onClick, type, etc.
 }: ButtonProps) {
   const base = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
 
