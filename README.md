@@ -6,28 +6,7 @@ A full-stack RAG-powered legal document analysis platform that enables users to 
 
 ---
 
-## Temporaray 
 
-```
-AuthContext ✅ done
-      ↓
-ThemeContext → understand dark mode toggle
-      ↓
-api/ folder → axios.config, auth.api, document.api, chat.api
-      ↓
-components/ui/ → Button, Input, Spinner, Badge, ThemeToggle
-      ↓
-components/layout/ → Navbar, ProtectedRoute
-      ↓
-components/dashboard/ → UploadZone, DocumentCard, DocumentGrid
-      ↓
-components/chat/ → ChatSidebar, ChatWindow, ChatInput, MessageBubble, SourceCitations
-      ↓
-pages/ → LandingPage, LoginPage, RegisterPage, DashboardPage, ChatPage
-      ↓
-App.tsx → how everything connects via router
-
-```
 
 ## What it does
 

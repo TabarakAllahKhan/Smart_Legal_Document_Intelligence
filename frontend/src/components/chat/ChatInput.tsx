@@ -12,6 +12,7 @@ export default function ChatInput({ onSend, loading, disabled }: ChatInputProps)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    // Prevent submission if the input is empty or if it's currently loading
     if (!value.trim() || loading) return
     onSend(value.trim())
     setValue('')
