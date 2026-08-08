@@ -8,6 +8,7 @@ A full-stack RAG-powered legal document analysis platform that enables users to 
 
 
 
+
 ## What it does
 
 Upload any legal document (PDF) and the platform automatically:
