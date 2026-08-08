@@ -17,7 +17,10 @@ app.use(cookieParser())
 //middlewares
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://smart-legal-document-intelligence.vercel.app'
+  ],
   credentials: true
 }))
 app.use(express.json());
