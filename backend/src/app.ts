@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://smart-legal-document-intelligence.vercel.app'
+    'https://smart-legal-document-intelligence-beta.vercel.app'
   ],
   credentials: true
 }))
