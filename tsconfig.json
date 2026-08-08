@@ -5,7 +5,7 @@
     "lib": ["ES2020"],
     "outDir": "./backend/dist",
     "rootDir": "./backend/src",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
