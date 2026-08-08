@@ -5,7 +5,7 @@ import DocumentGrid from '../components/dashboard/DocumentGrid'
 import UploadZone from '../components/dashboard/UploadZone'
 import Spinner from '../components/ui/Spinner'
 import Button from '../components/ui/Button'
-import { getDocumentsApi,deleteDocumentApi } from '../api/document.api'
+import { getDocumentsApi } from '../api/document.api'
 import { useAuth } from '../context/AuthContext'
 
 interface Document {
