@@ -27,12 +27,7 @@
     "multer": "^2.2.0",
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^6.1.200",
-    "prisma": "^5.10.0"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+    "prisma": "^5.10.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
@@ -44,5 +39,11 @@
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    
   }
 }
